@@ -1,0 +1,6 @@
+[package]
+name = "batteriewarner"
+version = "0.1.0"
+authors = ["Yves Fischer <yvesf-git@xapek.org>"]
+
+[dependencies]
