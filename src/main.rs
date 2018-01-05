@@ -61,13 +61,11 @@ fn indicate_battery_level(level: u32) -> Result<()> {
     Ok(())
 }
 
-#[allow(unused)]
 fn main() {
     loop {
         let p = read_battery_percentage();
         match p {
             Ok(level) => {
-                println!("Battery Level: {}", level);
                 if level < 20 {
                     match indicate_battery_level(level) {
                         Err(e) => panic!("Error: {}", e),
@@ -77,5 +75,6 @@ fn main() {
             }
             Err(e) => panic!("Error: {}", e),
         }
+        sleep(Duration::from_secs(10));
     }
 }
