@@ -3,3 +3,8 @@
 .idea
 *iml
 Cargo.lock
+
+debian/.debhelper
+debian/batteriewarner.debhelper.log
+debian/batteriewarner.substvars
+debian/batteriewarner
