@@ -1,6 +1,6 @@
 Source: batteriewarner
 Maintainer: Yves Fischer <yvesf+debian@xapek.org>
-Build-Depends: debhelper (>= 9), dh-cargo, rustc
+Build-Depends: debhelper (>= 9), dh-cargo, rustc, dh-systemd (>= 1.5)
 
 Package: batteriewarner
 Architecture: any

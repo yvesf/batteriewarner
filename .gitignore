@@ -5,6 +5,6 @@
 Cargo.lock
 
 debian/.debhelper
-debian/batteriewarner.debhelper.log
+debian/batteriewarner.*debhelper*
 debian/batteriewarner.substvars
-debian/batteriewarner
+debian/batteriewarner/

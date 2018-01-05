@@ -1,0 +1,9 @@
+[Unit]
+Description=Batteriewarner Daemon
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/batteriewarner
+
+[Install]
+WantedBy=multi-user.target
