@@ -6,9 +6,9 @@ use std::path::Path;
 use std::thread::sleep;
 use std::time::Duration;
 
-const PATH_ENERGY_NOW: &'static str = "/sys/class/power_supply/BAT0/energy_now";
-const PATH_ENERGY_FULL: &'static str = "/sys/class/power_supply/BAT0/energy_full_design";
-const PATH_LIGHT: &'static str = "/sys/devices/platform/thinkpad_acpi/leds/tpacpi::power/brightness";
+const PATH_ENERGY_NOW: &str = "/sys/class/power_supply/BAT0/energy_now";
+const PATH_ENERGY_FULL: &str = "/sys/class/power_supply/BAT0/energy_full_design";
+const PATH_LIGHT: &str = "/sys/devices/platform/thinkpad_acpi/leds/tpacpi::power/brightness";
 
 fn file_read_integer<P: AsRef<Path>>(path: P) -> Result<u64> {
     let mut buf = [0; 20];
@@ -53,9 +53,9 @@ fn indicate_battery_level(level: u32) -> Result<()> {
     let n = flashing_time / (level * offtime + level * ontime);
     for _ in 0..n {
         write_brightness(0)?;
-        sleep(Duration::from_millis((level * offtime) as u64));
+        sleep(Duration::from_millis(u64::from(level * offtime)));
         write_brightness(1)?;
-        sleep(Duration::from_millis((level * ontime) as u64));
+        sleep(Duration::from_millis(u64::from(level * ontime)));
     }
     write_brightness(led_state)?;
     Ok(())
@@ -67,9 +67,8 @@ fn main() {
         match p {
             Ok(level) => {
                 if level < 20 {
-                    match indicate_battery_level(level) {
-                        Err(e) => panic!("Error: {}", e),
-                        _ => {}
+                    if let Err(e) = indicate_battery_level(level) {
+                        panic!("Error: {}", e);
                     }
                 }
             }
