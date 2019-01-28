@@ -74,6 +74,6 @@ fn main() {
             }
             Err(e) => panic!("Error: {}", e),
         }
-        sleep(Duration::from_secs(10));
+        sleep(Duration::from_secs(60));
     }
 }
